@@ -7,8 +7,6 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Register />} />
-        {/* <Route path="/" element={<Auth />} /> */}
-        {/* <Route path="/home" element={<Home />} /> */}
       </Routes>
     </div>
   );

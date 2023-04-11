@@ -1,5 +1,6 @@
 {
   "name": "test_getwin",
+  "homepage": "https://viktorlyt.github.io/test_getwin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -33,6 +34,8 @@
     "yup": "^1.0.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -77,6 +80,7 @@
     "@storybook/react-webpack5": "7.0.2",
     "@storybook/testing-library": "0.0.14-next.2",
     "babel-plugin-named-exports-order": "0.0.2",
+    "gh-pages": "^5.0.0",
     "prop-types": "15.8.1",
     "storybook": "7.0.2",
     "webpack": "5.78.0"

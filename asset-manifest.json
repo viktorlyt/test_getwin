@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/test_getwin/static/css/main.055dfe6f.css",
+    "main.js": "/test_getwin/static/js/main.fe49396c.js",
+    "static/js/787.4e41b850.chunk.js": "/test_getwin/static/js/787.4e41b850.chunk.js",
+    "static/media/work.png": "/test_getwin/static/media/work.5be1990ac0702b5a5433.png",
+    "static/media/google.svg": "/test_getwin/static/media/google.cfe8745c7dda58e1d0d26081b881a663.svg",
+    "static/media/keyIcon.svg": "/test_getwin/static/media/keyIcon.2dc97882b7b18f6292b94f9ed5ecb672.svg",
+    "static/media/eyeIcon.svg": "/test_getwin/static/media/eyeIcon.3dfa5f1f4c7fe40f9d977bac1cfac7cd.svg",
+    "static/media/linkedIn.svg": "/test_getwin/static/media/linkedIn.3c07fc3adc97c128f441d0069651a7c7.svg",
+    "index.html": "/test_getwin/index.html",
+    "static/media/eyeOpen.svg": "/test_getwin/static/media/eyeOpen.ec3784a858d50275e2fcaa2086152cc8.svg",
+    "static/media/listIcon.svg": "/test_getwin/static/media/listIcon.e76dba7a09cb702ff74ef4899e2e700b.svg",
+    "static/media/fb.svg": "/test_getwin/static/media/fb.21e0e07e25c811b5b8863daa4b321849.svg",
+    "main.055dfe6f.css.map": "/test_getwin/static/css/main.055dfe6f.css.map",
+    "main.fe49396c.js.map": "/test_getwin/static/js/main.fe49396c.js.map",
+    "787.4e41b850.chunk.js.map": "/test_getwin/static/js/787.4e41b850.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.055dfe6f.css",
+    "static/js/main.fe49396c.js"
+  ]
+}

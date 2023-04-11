@@ -7,10 +7,12 @@ import listIcon from "../../assets/images/listIcon.svg";
 import work from "../../assets/images/work.png";
 import keyIcon from "../../assets/images/keyIcon.svg";
 import eyeIcon from "../../assets/images/eyeIcon.svg";
+import eyeOpen from "../../assets/images/eyeOpen.svg";
 import google from "../../assets/images/google.svg";
 import fb from "../../assets/images/fb.svg";
 import linkedIn from "../../assets/images/linkedIn.svg";
 import { useState } from "react";
+import axios from "axios";
 
 function Register() {
   const [passwordShown, setPasswordShown] = useState(false);
@@ -40,10 +42,65 @@ function Register() {
   };
 
   const handleSubmit = () => {
+    const email = (document.getElementById("email") as HTMLInputElement).value;
+    const password = (document.getElementById("password") as HTMLInputElement)
+      .value;
+    const confirmPassword = (
+      document.getElementById("confirmPassword") as HTMLInputElement
+    ).value;
+
+    if (password !== confirmPassword) {
+      alert("Passwords are different!");
+
+      return;
+    }
+
+    const newUser = {
+      email,
+      password,
+      ref: "link[http://example.com]",
+    };
+
+    axios
+      .post(
+        "https://api.prof.world/v2.0/profile/registration/",
+        JSON.stringify(newUser)
+      )
+      .then((res) => {
+        localStorage.setItem("token", res.data.user_data.token);
+      });
+
+    const token = localStorage.getItem('token');
+
+    axios
+      .get(
+        `https://api.prof.world/v2.0/profile/confirmEmail/?data={"token":"${token}","ref":"url"}`)
+      .then((res) => {
+        console.log(res.data);
+      });
+
     (document.getElementById("form") as HTMLFormElement).reset();
   };
 
   const handleSubmitLogin = () => {
+    const email = (document.getElementById("email") as HTMLInputElement).value;
+    const password = (document.getElementById("password") as HTMLInputElement)
+      .value;
+
+    const User = {
+      email,
+      password,
+    };
+
+    axios
+      .post(
+        "https://api.prof.world/v2.0/profile/loginUser/",
+        JSON.stringify(User)
+      )
+      .then((res) => {
+        localStorage.setItem("token", res.data.user_data.token);
+      });
+
     (document.getElementById("form") as HTMLFormElement).reset();
   };
 
@@ -113,6 +170,7 @@ function Register() {
               Укр
             </option>
           </select>
+
           <div className="contentRight">
             <div className="menu">
               <div className="tab" onClick={handleActiveTabLogin}>
@@ -137,7 +195,9 @@ function Register() {
                       E-mail
                     </label>
                     <Field
-                      className="form__input"
+                      className={
+                        errors.email ? "form__input errorInput" : "form__input"
+                      }
                       name="email"
                       type="email"
                       id="email"
@@ -151,19 +211,33 @@ function Register() {
                     </label>
                     <div className="inputWithIcon">
                       <Field
-                        className="form__input"
+                        className={
+                          errors.password
+                            ? "form__input errorInput"
+                            : "form__input"
+                        }
                         name="password"
                         type={passwordShown ? "text" : "password"}
                         id="password"
                         placeholder="Укажите ваш пароль"
                       />
                       <img src={keyIcon} alt="keyIcon" className="keyIcon" />
-                      <img
-                        src={eyeIcon}
-                        alt="eyeIcon"
-                        className="eyeIcon"
-                        onClick={(e) => setPasswordShown(!passwordShown)}
-                      />
+                      {!passwordShown ? (
+                        <img
+                          src={eyeIcon}
+                          alt="eyeIcon"
+                          className="eyeIcon"
+                          onClick={(e) => setPasswordShown(!passwordShown)}
+                        />
+                      ) : null}
+                      {passwordShown ? (
+                        <img
+                          src={eyeOpen}
+                          alt="eyeOpen"
+                          className="eyeOpen"
+                          onClick={(e) => setPasswordShown(!passwordShown)}
+                        />
+                      ) : null}
                     </div>
                     {errors.password && touched.password ? (
                       <div className="error">{errors.password}</div>
@@ -173,20 +247,36 @@ function Register() {
                     </label>
                     <div className="inputWithIcon">
                       <Field
-                        className="form__input iconEye"
+                        className={
+                          errors.confirmPassword
+                            ? "form__input errorInput"
+                            : "form__input"
+                        }
                         name="confirmPassword"
                         type={confirmPasswordShown ? "text" : "password"}
                         id="confirmPassword"
                         placeholder="Повторите ваш пароль"
                       />
-                      <img
-                        src={eyeIcon}
-                        alt="eyeIcon"
-                        className="eyeIcon"
-                        onClick={(e) =>
-                          setConfirmPasswordShown(!confirmPasswordShown)
-                        }
-                      />
+                      {!confirmPasswordShown ? (
+                        <img
+                          src={eyeIcon}
+                          alt="eyeIcon"
+                          className="eyeIcon"
+                          onClick={(e) =>
+                            setConfirmPasswordShown(!confirmPasswordShown)
+                          }
+                        />
+                      ) : null}
+                      {confirmPasswordShown ? (
+                        <img
+                          src={eyeOpen}
+                          alt="eyeOpen"
+                          className="eyeOpen"
+                          onClick={(e) =>
+                            setConfirmPasswordShown(!confirmPasswordShown)
+                          }
+                        />
+                      ) : null}
                     </div>
                     {errors.confirmPassword && touched.confirmPassword ? (
                       <div className="error">{errors.confirmPassword}</div>
@@ -213,7 +303,9 @@ function Register() {
                       E-mail
                     </label>
                     <Field
-                      className="form__input"
+                      className={
+                        errors.email ? "form__input errorInput" : "form__input"
+                      }
                       name="email"
                       type="email"
                       id="email"
@@ -227,19 +319,33 @@ function Register() {
                     </label>
                     <div className="inputWithIcon">
                       <Field
-                        className="form__input"
+                        className={
+                          errors.password
+                            ? "form__input errorInput"
+                            : "form__input"
+                        }
                         name="password"
                         type={passwordShown ? "text" : "password"}
                         id="password"
                         placeholder="Укажите ваш пароль"
                       />
                       <img src={keyIcon} alt="keyIcon" className="keyIcon" />
-                      <img
-                        src={eyeIcon}
-                        alt="eyeIcon"
-                        className="eyeIcon"
-                        onClick={(e) => setPasswordShown(!passwordShown)}
-                      />
+                      {!passwordShown ? (
+                        <img
+                          src={eyeIcon}
+                          alt="eyeIcon"
+                          className="eyeIcon"
+                          onClick={(e) => setPasswordShown(!passwordShown)}
+                        />
+                      ) : null}
+                      {passwordShown ? (
+                        <img
+                          src={eyeOpen}
+                          alt="eyeOpen"
+                          className="eyeOpen"
+                          onClick={(e) => setPasswordShown(!passwordShown)}
+                        />
+                      ) : null}
                     </div>
                     {errors.password && touched.password ? (
                       <div className="error">{errors.password}</div>

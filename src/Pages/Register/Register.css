@@ -213,11 +213,15 @@ a {
   font-size: 12px;
   line-height: 24px;
 }
+.form__input.errorInput {
+  border: 2px solid red;
+}
 .form .inputWithIcon {
   position: relative;
 }
 .form .keyIcon,
-.form .eyeIcon {
+.form .eyeIcon,
+.form .eyeOpen {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -228,7 +232,8 @@ a {
 .form .keyIcon {
   right: 35px;
 }
-.form .eyeIcon {
+.form .eyeIcon,
+.form .eyeOpen {
   right: 5px;
 }
 .form__submit {
